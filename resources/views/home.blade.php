@@ -11,6 +11,7 @@
                     You are logged in!
                 </div>
             </div>
+            {{ $user }}
         </div>
     </div>
 </div>
