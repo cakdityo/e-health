@@ -21,6 +21,7 @@ class CreateDiseasesTable extends Migration
         Schema::create('disease_indication', function (Blueprint $table){
             $table->integer('disease_id')->unsigned();
             $table->integer('indication_id')->unsigned();
+            $table->float('cf_score');
             $table->timestamps();
 
             $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
@@ -35,6 +36,7 @@ class CreateDiseasesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('disease_indication');
         Schema::drop('diseases');
     }
 }
