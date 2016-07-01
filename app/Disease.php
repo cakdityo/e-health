@@ -15,6 +15,6 @@ class Disease extends Model
     }
 
     public function indications(){
-        return $this->belongsToMany('App\Indication');
+        return $this->belongsToMany('App\Indication')->withPivot('cf_score')->withTimestamps();
     }
 }

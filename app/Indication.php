@@ -11,10 +11,10 @@ class Indication extends Model
     ];
 
     public function diseases(){
-        return $this->belongsToMany('App\Disease');
+        return $this->belongsToMany('App\Disease')->withPivot('cf_score')->withTimestamps();
     }
 
     public function diagnosis(){
-        return $this->belongsToMany('App\Diagnosis');
+        return $this->belongsToMany('App\Diagnosis')->withTimestamps();
     }
 }

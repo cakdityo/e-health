@@ -19,6 +19,6 @@ class Diagnosis extends Model
     }
 
     public function indications(){
-        return $this->belongsToMany('App\Indication');
+        return $this->belongsToMany('App\Indication')->withTimestamps();
     }
 }
