@@ -43,7 +43,7 @@ class HomeController extends Controller
             $tempDiseases = Indication::find($userIndication)->diseases;
             foreach($tempDiseases as $dis){
                 if(array_has($diseases, $dis->id)){
-                    $diseases[$dis->id] = $diseases[$dis->id] + $dis->pivot->cf_score;
+                    $diseases[$dis->id] = ($diseases[$dis->id] + $dis->pivot->cf_score) * (1 - $diseases[$dis->id]);
                 } else {
                     $diseases[$dis->id] = $dis->pivot->cf_score;
                 }
