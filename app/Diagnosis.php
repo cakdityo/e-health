@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnosis extends Model
 {
+
+    protected $table = 'diagnosis';
+
     protected $fillable = [
         'user_id', 'disease_id', 'cf_total'
     ];
@@ -16,9 +19,5 @@ class Diagnosis extends Model
 
     public function disease(){
         return $this->belongsTo('App\Disease');
-    }
-
-    public function indications(){
-        return $this->belongsToMany('App\Indication')->withTimestamps();
     }
 }

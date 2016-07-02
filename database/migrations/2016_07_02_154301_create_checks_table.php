@@ -19,6 +19,15 @@ class CreateChecksTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::create('check_indication', function (Blueprint $table){
+            $table->integer('check_id')->unsigned();
+            $table->integer('indication_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('check_id')->references('id')->on('checks')->onDelete('cascade');
+            $table->foreign('indication_id')->references('id')->on('indications')->onDelete('cascade');
+        });
     }
 
     /**
@@ -28,6 +37,7 @@ class CreateChecksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checks');
+        Schema::dropIfExists('check_indication');
+        Schema::drop('checks');
     }
 }

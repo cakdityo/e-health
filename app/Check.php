@@ -13,4 +13,8 @@ class Check extends Model
     public function diagnosis(){
         return $this->hasMany('App\Diagnosis');
     }
+
+    public function indications(){
+        return $this->belongsToMany('App\Indication')->withTimestamps();
+    }
 }

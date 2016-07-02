@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use App\Diagnosis;
+use App\Check;
 use App\Disease;
 use App\Indication;
 use App\Http\Requests;
@@ -34,6 +36,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
         $diseases = [];
         $userIndications = $request->input('indications');
         foreach($userIndications as $userIndication){
@@ -46,6 +49,12 @@ class HomeController extends Controller
                 }
             }
         }
-        return $diseases;
+        $check = $user->checks()->create([]);
+        $check->indications()->attach($userIndications);
+        foreach($diseases as $disease_id => $cf_total){
+            $check->diagnosis()->create(['disease_id' => $disease_id, 'cf_total' => $cf_total]);
+        }
+        $check_diagnosis = Diagnosis::where('check_id', $check->id)->orderBy('cf_total', 'desc')->get();
+        return view('diagnosis', compact('user', 'check', 'check_diagnosis'));
     }
 }

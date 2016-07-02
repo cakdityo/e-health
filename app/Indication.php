@@ -14,7 +14,7 @@ class Indication extends Model
         return $this->belongsToMany('App\Disease')->withPivot('cf_score')->withTimestamps();
     }
 
-    public function diagnosis(){
-        return $this->belongsToMany('App\Diagnosis')->withTimestamps();
+    public function checks(){
+        return $this->belongsToMany('App\Check')->withTimestamps();
     }
 }

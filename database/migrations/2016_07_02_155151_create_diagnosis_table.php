@@ -22,15 +22,6 @@ class CreateDiagnosisTable extends Migration
             $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
             $table->timestamps();
         });
-
-        Schema::create('diagnosis_indication', function (Blueprint $table){
-            $table->integer('diagnosis_id')->unsigned();
-            $table->integer('indication_id')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('diagnosis_id')->references('id')->on('diagnosis')->onDelete('cascade');
-            $table->foreign('indication_id')->references('id')->on('indications')->onDelete('cascade');
-        });
     }
 
     /**
@@ -40,7 +31,6 @@ class CreateDiagnosisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diagnosis_indication');
         Schema::drop('diagnosis');
     }
 }
