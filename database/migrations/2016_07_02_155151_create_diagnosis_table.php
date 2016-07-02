@@ -14,11 +14,11 @@ class CreateDiagnosisTable extends Migration
     {
         Schema::create('diagnosis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('check_id')->unsigned();
             $table->integer('disease_id')->unsigned();
             $table->float('cf_total');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('check_id')->references('id')->on('checks')->onDelete('cascade');
             $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
             $table->timestamps();
         });

@@ -10,8 +10,8 @@ class Diagnosis extends Model
         'user_id', 'disease_id', 'cf_total'
     ];
 
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function check(){
+        return $this->belongsTo('App\Check');
     }
 
     public function disease(){

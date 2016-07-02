@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function diagnosis(){
-        return $this->hasMany('App\Diagnosis');
+    public function checks(){
+        return $this->hasMany('App\Check');
     }
 }
